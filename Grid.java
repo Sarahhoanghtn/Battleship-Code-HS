@@ -12,7 +12,7 @@ public Grid() {
     grid = new Location[NUM_COLS][NUM_ROWS];
     for (int y = 0; y < NUM_ROWS; y++) {
         for (int x = 0; x < NUM_COLS; x++) {
-            grid[x][y] = new Location();
+            grid[y][x] = new Location();
         }
     }
 }
@@ -20,7 +20,7 @@ public Grid() {
 // Mark a hit in this location by calling the markHit method
 // on the Location object.  
 public void markHit(int row, int col) {
-    grid[col][row].markHit();
+    grid[row][col].markHit();
 }
 
 // Mark a miss on this location.    
@@ -30,33 +30,33 @@ public void markMiss(int row, int col) {
 
 // Set the status of this location object.
 public void setStatus(int row, int col, int status) {
-    grid[col][row].setStatus(status);
+    grid[row][col].setStatus(status);
 }
 
 // Get the status of this location in the grid  
 public int getStatus(int row, int col) {
-    return grid[col][row].getStatus();
+    return grid[row][col].getStatus();
 }
 
 // Return whether or not this Location has already been guessed.
 public boolean alreadyGuessed(int row, int col){
-    return !grid[col][row].isUnguessed();
+    return !grid[row][col].isUnguessed();
 }  
 
 // Set whether or not there is a ship at this location to the val   
 public void setShip(int row, int col, boolean val) {
-    grid[col][row].setShip(val);
+    grid[row][col].setShip(val);
 }
 
 // Return whether or not there is a ship here   
 public boolean hasShip(int row, int col){
-    return grid[col][row].hasShip();
+    return grid[row][col].hasShip();
 }
 
 
 // Get the Location object at this row and column position
 public Location get(int row, int col){
-    return grid[col][row];
+    return grid[row][col];
 }
 
 // Return the number of rows in the Grid
@@ -103,10 +103,10 @@ public void printStatus() {
     for (int y = 0; y < NUM_ROWS; y++) {
         System.out.print(alpha[y] + " ");
         for (int x = 0; x < NUM_COLS; x++) {
-            if (grid[x][y].checkHit()) {
+            if (grid[y][x].checkHit()) {
                 System.out.print("X ");
             }
-            else if (grid[x][y].checkMiss()) {
+            else if (grid[y][x].checkMiss()) {
                 System.out.print("O ");
             }
             else System.out.print("- ");
@@ -145,7 +145,7 @@ public void printShips() {
     for (int y = 0; y < NUM_ROWS; y++) {
         System.out.print(alpha[y] + " ");
         for (int x = 0; x < NUM_COLS; x++) {
-            if (grid[x][y].hasShip()) {
+            if (grid[y][x].hasShip()) {
                 System.out.print("X ");
             }
             else System.out.print("- ");
